@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | Comfy</title>
+    <link rel="icon" type="image/x-icon" href="./assets/images/favorIcon.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./base.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <section id="preloader">
+        <div class="preloader">
+            <img src="./assets/Video-gif/preloader.gif" alt="">
+        </div>
+    </section>
+    <!-- Start hero section -->
+    <section id="hero">
+        <div class="hero container">
+            <div class="hero__text text-white">
+                <h1><span class="reveal">Rest, Relax, Unwind</span></h1>
+                <h2>Embrace your choices - we do</h2>
+                <a href="./products.html" class="btn-normal hero__btn text-uppercase text-white rounded">Show Now</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Start header section-->
+    <section id="header">
+        <div class="header container">
+            <button class="hamburger text-white js-hamburger">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="brand">
+                <img src="./assets/images/logo-white.svg" alt="" style="width: 131px; height: 78px;">
+            </div>
+            <ul class="navbar">
+                <li class="navbar__item">
+                    <a href="#" class="navbar__link text-white">Home</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="./products.html" class="navbar__link text-white">Products</a>
+                </li>
+                <li class="navbar__item">
+                    <a href="./about.html" class="navbar__link text-white">About</a>
+                </li>
+            </ul>
+
+            <button class="cart-btn text-white btn-normal js-cart-btn">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span class="cart__badge">0</span>
+            </button>
+
+        </div>
+    </section>
+
+    <!-- Start featured section -->
+    <section id="featured">
+        <div class="container featured py-section text-center">
+            <h2 class="section-title"><span>/ </span>Featured</h2>
+            <ul class="list"></ul>
+            <a href="./products.html" class="btn-primary all-products-btn">All Products</a>
+        </div>
+    </section>
+
+    <!-- Sidebar overlay -->
+    <div class="sidebar-overlay js-sidebar-overlay">
+        <asidec class="sidebar rounded">
+            <button class="btn-normal text-gray close-btn js-close-sidebar-overlay">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <ul>
+                <li class="sidebar__item">
+                    <a href="#" class="sidebar__link text-gray">
+                        <i class="fa-solid fa-house-chimney"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a href="./products.html" class="sidebar__link text-gray">
+                        <i class="fa-solid fa-couch"></i>
+                        Products
+                    </a>
+                </li>
+                <li class="sidebar__item">
+                    <a href="./about.html" class="sidebar__link text-gray">
+                        <i class="fa-solid fa-book"></i>
+                        About
+                    </a>
+                </li>
+            </ul>
+        </asidec>
+    </div>
+
+    <!-- Cart overlay -->
+    <div class="cart-overlay js-cart-overlay">
+        <aside class="cart js-cart">
+            <button class="btn-normal text-gray close-btn js-close-cart-overlay">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <header class="cart__header text-center">
+                <h1>Your Bag</h1>
+            </header>
+            <div class="cart__body">
+                <ul class="cart__list js-cart-list">
+                    <!-- <li class= "item js-item">
+                        <div class="item__img rounded">
+                            <img src="{item.img}" alt="">
+                        </div>
+                        <div class="item__body">
+                            <h5 class="item__name">{item.name}</h5>
+                            <h6 class="item__price">{item.price}</h6>
+                            <button class="js-remove-btn btn-normal text-gray">Remove</button>
+                        </div>
+                        <div class="item__quantity text-center js-item-quantity">
+                            <span><i class="fa-solid fa-angle-up js-inc-btn"></i></span>
+                            <h5 class="number js-number-item">{item.quantity}</h5>
+                            <span><i class="fa-solid fa-angle-down js-dec-btn"></i></span>
+                        </div>
+                    </li> -->
+                </ul>
+            </div>
+            <footer class="cart__footer text-center">
+                <h1>Total: $0</h1>
+                <button class="btn-primary js-checkout-btn">Checkout</button>
+            </footer>
+        </aside>
+    </div>
+
+    
+    <script type="module" src="./homePage.js"></script>
+</body>
+</html>
