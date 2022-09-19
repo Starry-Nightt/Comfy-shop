@@ -52,19 +52,6 @@ function handleEvents(){
             cartBtn.click();
         }
     }
-    window.onbeforeunload = function(){
-        const option = {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-        }
-        fetch(api + `/${dataProduct.id}`, option)
-            .then(function(response){
-                response.json();
-        })
-    }
 }
 
 

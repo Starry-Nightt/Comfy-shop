@@ -18,35 +18,42 @@ items =  items.map(function(element){
 })
 
 const keyLocal = 'cartLocal';
+// localStorage.setItem(keyLocal, JSON.stringify([]));
 
 export const cartApp = {
     items: items,
 
-
     renderCart: function(){
-        this.items = JSON.parse(localStorage.getItem(keyLocal))
-        let htmls = this.items.map(function(item){
-            return `
-            <li class= "item js-item">
-                <div class="item__img rounded">
-                    <img src="${item.img}" alt="">
-                </div>
-                <div class="item__body">
-                    <h5 class="item__name">${item.name}</h5>
-                    <h6 class="item__price">$${item.price}</h6>
-                    <button class="js-remove-btn btn-normal text-gray">Remove</button>
-                </div>
-                <div class="item__quantity text-center js-item-quantity">
-                    <span><i class="fa-solid fa-angle-up js-inc-btn"></i></span>
-                    <h5 class="number js-number-item">${item.quantity}</h5>
-                    <span><i class="fa-solid fa-angle-down js-dec-btn"></i></span>
-                </div>
-            </li>
-            `
-        })
-        cart.querySelector('.cart__list').innerHTML = htmls.join('');
-        this.updateBadge();
-        this.updateTotal();
+        if (localStorage.getItem(keyLocal) == null){
+            this.items = [];
+            this.updateBadge();
+            this.updateTotal();
+        }
+        else {
+            this.items = JSON.parse(localStorage.getItem(keyLocal))
+            let htmls = this.items.map(function(item){
+                return `
+                <li class= "item js-item">
+                    <div class="item__img rounded">
+                        <img src="${item.img}" alt="">
+                    </div>
+                    <div class="item__body">
+                        <h5 class="item__name">${item.name}</h5>
+                        <h6 class="item__price">$${item.price}</h6>
+                        <button class="js-remove-btn btn-normal text-gray">Remove</button>
+                    </div>
+                    <div class="item__quantity text-center js-item-quantity">
+                        <span><i class="fa-solid fa-angle-up js-inc-btn"></i></span>
+                        <h5 class="number js-number-item">${item.quantity}</h5>
+                        <span><i class="fa-solid fa-angle-down js-dec-btn"></i></span>
+                    </div>
+                </li>
+                `
+            })
+            cart.querySelector('.cart__list').innerHTML = htmls.join('');
+            this.updateBadge();
+            this.updateTotal();
+        }
     },
 
     handleEvents: function(){
@@ -98,6 +105,7 @@ export const cartApp = {
             totalMoney = totalMoney.slice(7);
             console.log(totalMoney)
             cartApp.items = []
+            localStorage.setItem(keyLocal, JSON.stringify(cartApp.items))
             cartApp.renderCart();
             cartApp.updateBadge();
             cartApp.updateTotal();
@@ -116,7 +124,8 @@ export const cartApp = {
     handleAddItem: function(item){
         if (this.items.length == 0){
             const cartImg = cartList.querySelector('.cart__image');
-            cartList.removeChild(cartImg)
+            if (cartImg)
+                cartList.removeChild(cartImg)
         }
         const nameItems = this.items.map(function(element){
             return element.name;
