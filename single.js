@@ -46,7 +46,7 @@ function renderProduct(element){
 function handleEvents(){
     document.querySelector('#detail').onclick = function(e){
         if (e.target.closest('.js-add-cart-btn')){
-            const {img, name, price} = dataProduct;
+            const {img, name, price} = JSON.parse(localStorage.getItem(keyLocal));
             const newCartItem = {img, name, price, quantity: 1};
             cartApp.handleAddItem(newCartItem);
             cartBtn.click();
