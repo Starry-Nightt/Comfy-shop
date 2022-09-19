@@ -6,7 +6,7 @@ var $ = document.querySelector.bind(document);
 var $$ = document.querySelectorAll.bind(document);
 
 const wrapperList = $('#wrapper .list');
-const singleProductApi = "http://localhost:3000/products"
+
 const app = {
     products: products,
     filteredProducts: products,

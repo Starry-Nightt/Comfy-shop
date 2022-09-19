@@ -20,7 +20,6 @@ items =  items.map(function(element){
 const keyLocal = 'cartLocal';
 
 export const cartApp = {
-    cartApi:"http://localhost:3000/cartProducts",
     items: items,
 
 

@@ -7,8 +7,6 @@ var $$ = document.querySelectorAll.bind(document);
 
 const featuredList = $('#featured .list');
 
-const singleProductApi = "http://localhost:3000/products"
-
 var keyLocal = 'detailProduct'
 
 const app = {

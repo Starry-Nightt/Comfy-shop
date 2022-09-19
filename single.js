@@ -5,8 +5,6 @@ runCart();
 runSidebar();
 
 // Single page plugin
-const api = "http://localhost:3000/products";
-let dataProduct;
 
 const keyLocal = 'detailProduct'
 function start(){
