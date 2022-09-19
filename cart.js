@@ -134,6 +134,7 @@ export const cartApp = {
         if (index >= 0 && index < nameItems.length)
         {
             this.items[index].quantity++;
+            localStorage.setItem(keyLocal, JSON.stringify(this.items));
             this.renderCart();
             return;
         }
