@@ -9,6 +9,8 @@ const featuredList = $('#featured .list');
 
 const singleProductApi = "http://localhost:3000/products"
 
+var keyLocal = 'detailProduct'
+
 const app = {
     products: products,
 
@@ -81,19 +83,8 @@ const app = {
                     return;
                 }
                 const viewedItem = app.products[index]
-                console.log(viewedItem);
-                const option = {
-                    method: 'POST',
-                    body: JSON.stringify(viewedItem),
-                    headers: {
-                        'Content-Type': 'application/json'
-                        // 'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                }
-                fetch(singleProductApi, option)
-                    .then(function(response){
-                        response.json();
-                    })
+                localStorage.setItem(keyLocal, JSON.stringify(viewedItem));
+                
             }
         }
     },

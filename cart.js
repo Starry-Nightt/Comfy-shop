@@ -17,12 +17,15 @@ items =  items.map(function(element){
     return {img, name, price, quantity: 1}
 })
 
+const keyLocal = 'cartLocal';
+
 export const cartApp = {
     cartApi:"http://localhost:3000/cartProducts",
     items: items,
 
 
     renderCart: function(){
+        this.items = JSON.parse(localStorage.getItem(keyLocal))
         let htmls = this.items.map(function(item){
             return `
             <li class= "item js-item">
@@ -127,6 +130,7 @@ export const cartApp = {
             return;
         }
         this.items.push(item);
+        localStorage.setItem(keyLocal, JSON.stringify(this.items));
         const newItem = document.createElement('li');
         newItem.classList.add('item', 'js-item');
         newItem.innerHTML =  `
@@ -158,6 +162,7 @@ export const cartApp = {
         if (index >= 0 && index < nameItems.length)
         {
             this.items.splice(index,1);
+            localStorage.setItem(keyLocal, JSON.stringify(this.items));
             cartList.removeChild(selectedItem);
             this.updateBadge();
             this.updateTotal();
@@ -174,6 +179,7 @@ export const cartApp = {
         if (index >= 0 && index < nameItems.length)
         {
             this.items[index].quantity++;
+            localStorage.setItem(keyLocal, JSON.stringify(this.items));
         }
         this.updateTotal();
     },
@@ -186,6 +192,7 @@ export const cartApp = {
         if (index >= 0 && index < nameItems.length)
         {
             this.items[index].quantity--;
+            localStorage.setItem(keyLocal, JSON.stringify(this.items));
         }
         this.updateTotal();
     },

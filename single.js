@@ -7,6 +7,8 @@ runSidebar();
 // Single page plugin
 const api = "http://localhost:3000/products";
 let dataProduct;
+
+const keyLocal = 'detailProduct'
 function start(){
     getProduct(renderProduct);
     handleEvents();
@@ -14,17 +16,14 @@ function start(){
 
 start();
 
+
 function getProduct(callback){
-    fetch(api)
-        .then(response => response.json())
-        .then(callback);
+    const data = JSON.parse(localStorage.getItem(keyLocal));
+    callback(data)
 }
 
-function renderProduct(data){
-    const n = data.length;
-    dataProduct = data[n-1];
-    const htmls = data.map(function(element){
-        return `
+function renderProduct(element){
+    var htmls =  `
         <div class="detail container py-section">
             <div class="detail__img rounded">
                 <img src="${element.img}" alt="">
@@ -42,9 +41,8 @@ function renderProduct(data){
             </div>
         </div>
         `
-    })
-    document.querySelector('#detail').innerHTML = htmls[n-1];
-    document.querySelector('#breadcrumb .js-breadcrumb-product a').textContent = dataProduct.name
+    document.querySelector('#detail').innerHTML = htmls;
+    document.querySelector('#breadcrumb .js-breadcrumb-product a').textContent = element.name
 }
 
 function handleEvents(){

@@ -1,7 +1,7 @@
 import runSidebar from "./sidebar.js";
 import runCart, {cartApp, cartBtn} from './cart.js';
 import products from './productsData.js';
-
+var keyLocal = 'detailProduct'
 var $ = document.querySelector.bind(document);
 var $$ = document.querySelectorAll.bind(document);
 
@@ -89,23 +89,11 @@ const app = {
                 })
                 const index = nameListItem.indexOf(nameItem);
                 if (index == -1){
-                    console.log(false)
                     return;
                 }
                 const viewedItem = app.products[index]
-                console.log(viewedItem);
-                const option = {
-                    method: 'POST',
-                    body: JSON.stringify(viewedItem),
-                    headers: {
-                        'Content-Type': 'application/json'
-                        // 'Content-Type': 'application/x-www-form-urlencoded',
-                    },
-                }
-                fetch(singleProductApi, option)
-                    .then(function(response){
-                        response.json();
-                    })
+                localStorage.setItem(keyLocal, JSON.stringify(viewedItem));
+                
             }
         }
 
