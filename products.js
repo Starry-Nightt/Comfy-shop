@@ -34,6 +34,14 @@ const app = {
             `
         })
         $('#wrapper .wrapper-right .list').innerHTML = htmls.join('');
+        if (this.filteredProducts.length == 0){
+            $('#wrapper .wrapper-right .list').innerHTML = `
+                <h4 style="width: 100%; padding-top: 100px; font-weight: 400; font-size: 2rem; letter-spacing: 0.2rem; margin-left: -50px">
+                Sorry, No Products Matched Your Search
+                </h4>
+            `
+            return;
+        }
     },
 
     handleEvents: function(){
