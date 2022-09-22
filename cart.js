@@ -58,6 +58,7 @@ export const cartApp = {
 
     handleEvents: function(){
         // CLick events
+        const _this = this;
         cartBtn.onclick = function(){
             cartOverlay.classList.add('show')
         }
@@ -82,7 +83,7 @@ export const cartApp = {
                 const numberItems = e.target.closest('.js-item-quantity').querySelector('.js-number-item');
                 let number = numberItems.textContent;
                 const selectedItem = e.target.closest('.js-item');
-                cartApp.handleDecreaseItem(selectedItem);
+                _this.handleDecreaseItem(selectedItem);
                 number--;
                 if (number == 0){
                     const item = e.target.closest('.js-item');
@@ -119,6 +120,10 @@ export const cartApp = {
 
         // Load event
         preloader();
+
+        cart.addEventListener('beforeunload', function(e){
+            cartApp.renderCart();
+        })
     },
 
     handleAddItem: function(item){
@@ -191,6 +196,7 @@ export const cartApp = {
             localStorage.setItem(keyLocal, JSON.stringify(this.items));
         }
         this.updateTotal();
+        this.updateBadge();
     },
     handleDecreaseItem: function(selectedItem){
         const nameItem = selectedItem.querySelector('.item__name').textContent;
@@ -204,6 +210,7 @@ export const cartApp = {
             localStorage.setItem(keyLocal, JSON.stringify(this.items));
         }
         this.updateTotal();
+        this.updateBadge();
     },
 
     updateCartImage: function(){
@@ -226,7 +233,9 @@ export const cartApp = {
     },
 
     updateBadge: function(){
-        const n = this.items.length;
+        const n = this.items.reduce(function(acc, cur){
+            return acc + cur.quantity
+        },0);
         const cartBadge = document.querySelector('#header .cart__badge');
         if (n == 0){
             cartBadge.style.visibility = 'hidden';
